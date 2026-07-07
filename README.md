@@ -48,8 +48,27 @@ yarn test
 
 ## Libraries
 
-- `axios` – HTTP requests
-- `expo-document-picker` – file picker for the "Choose file" field
-- `react-native-safe-area-context` – safe-area insets
-- `@expo/vector-icons` – icons
-- `jest-expo` + `@testing-library/react-native` – tests
+Each third-party library and why it's here (with the alternative I weighed):
+
+- **`axios`** – HTTP requests. Considered the built-in `fetch`, which would also
+  work, but axios lets me configure one instance (base URL, timeout, JSON
+  handling) in a single place and is trivial to mock in tests. Small and worth it.
+- **`expo-document-picker`** – native file picker for the "Choose file" field.
+  Considered `expo-image-picker` (images only) — too narrow, since the field
+  should accept any file. This is the managed, cross-platform option with no
+  native setup.
+- **`react-native-safe-area-context`** – safe-area insets (notch, home bar).
+  Considered React Native's built-in `SafeAreaView`, but it's deprecated and
+  iOS-only; this is the Expo-recommended standard, works on both platforms and
+  gives per-edge control (used to keep the status-bar area white).
+- **`@expo/vector-icons`** – icons matching the mockups. Considered hand-rolled
+  SVGs via `react-native-svg` — more code for no benefit. This ships with Expo,
+  needs no bundler config, and covers every glyph used (bell, list/grid, sort,
+  file, users, link).
+- **`jest-expo` + `@testing-library/react-native`** – tests. Considered plain
+  Jest with `react-test-renderer` directly, but `jest-expo` wires up the RN/Expo
+  transform for me, and Testing Library encourages asserting on what the user
+  sees rather than component internals.
+
+For relative dates ("1 day ago") I deliberately avoided a date library
+(`dayjs`/`date-fns`/`moment`) — it's a tiny hand-written helper, so no dependency.
