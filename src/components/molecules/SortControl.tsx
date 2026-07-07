@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 import { colors, radius, spacing } from '../../theme';
 import { SortKey, SORT_OPTIONS } from '../../utils/sortDocuments';
 import { AppText } from '../atoms/AppText';
@@ -27,7 +27,7 @@ export const SortControl = ({ value, onChange }: SortControlProps) => {
         onPress={() => setOpen(true)}
         style={({ pressed }) => [styles.pill, pressed ? styles.pressed : null]}
       >
-        <Feather name="chevrons-down" size={16} color={colors.heading} />
+        <FontAwesome name="sort" size={16} color={colors.heading} />
         <AppText variant="sectionLabel">Sort by</AppText>
         <View style={styles.divider} />
         <Feather name="chevron-down" size={18} color={colors.heading} />

@@ -27,7 +27,7 @@ export const DocumentCard = ({
 
   return (
     <Card onLongPress={onLongPress} testID={`document-card-${document.id}`}>
-      <View style={styles.titleRow}>
+      <View style={[styles.titleRow, mode === 'grid' ? styles.titleColumn : null]}>
         <AppText variant="cardTitle" numberOfLines={1} style={styles.title}>
           {document.title}
         </AppText>
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     flexWrap: 'wrap',
     gap: spacing.sm,
+  },
+  titleColumn: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: spacing.xs,
   },
   title: { flexShrink: 1 },
   columns: {

@@ -42,24 +42,27 @@ export const DocumentsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      {/* Header shares the white status-bar area; the feed below is grey. */}
       <DocumentsHeader
         unreadCount={unreadCount}
         onBellPress={openNotifications}
       />
-      <Toolbar
-        sortKey={sortKey}
-        onSortChange={setSortKey}
-        viewMode={viewMode}
-        onViewModeChange={setViewMode}
-      />
-      <DocumentFeed
-        documents={sortedDocuments}
-        mode={viewMode}
-        loading={loading}
-        refreshing={refreshing}
-        error={error}
-        onRefresh={refresh}
-      />
+      <View style={styles.body}>
+        <Toolbar
+          sortKey={sortKey}
+          onSortChange={setSortKey}
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
+        />
+        <DocumentFeed
+          documents={sortedDocuments}
+          mode={viewMode}
+          loading={loading}
+          refreshing={refreshing}
+          error={error}
+          onRefresh={refresh}
+        />
+      </View>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + spacing.md }]}>
         <Button
@@ -88,7 +91,8 @@ export const DocumentsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
+  container: { flex: 1, backgroundColor: colors.surface },
+  body: { flex: 1, backgroundColor: colors.background },
   footer: {
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.md,

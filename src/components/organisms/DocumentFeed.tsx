@@ -73,6 +73,7 @@ export const DocumentFeed = ({
       renderItem={renderItem}
       numColumns={isGrid ? 2 : 1}
       columnWrapperStyle={isGrid ? styles.gridRow : undefined}
+      style={styles.list}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
       refreshControl={
@@ -94,6 +95,7 @@ export const DocumentFeed = ({
 };
 
 const styles = StyleSheet.create({
+  list: { flex: 1 },
   content: {
     paddingHorizontal: spacing.xl,
     paddingBottom: spacing.xxl,
