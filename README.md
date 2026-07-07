@@ -12,6 +12,14 @@ notifications when other users create documents, and lets you add new ones.
 
 ## Run it
 
+You need the testing server running first (from the challenge's sample repo, needs Go):
+
+```bash
+go run server.go            # http://localhost:8080
+```
+
+Then the app:
+
 ```bash
 yarn install
 yarn ios                    # or: yarn android
